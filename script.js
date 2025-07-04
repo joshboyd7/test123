@@ -10,16 +10,19 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
 
 // Color scale
 function getColor(d) {
-  return d > 6000 ? '#08306b' :
-         d > 5000 ? '#2171b5' :
-         d > 4000 ? '#6baed6' :
-         d > 3000 ? '#bdd7e7' :
-         d > 2000 ? '#eff3ff' :
-         d > 1000 ? '#fee0d2' :
-         d > 500  ? '#fc9272' :
-         d > 100  ? '#de2d26' :
+  if (d === null || d === undefined || isNaN(d)) return '#cccccc'; // gray for NA
+
+  return d > 9411.148 ? '#08306b' :
+         d > 2511.106 ? '#2171b5' :
+         d > 2168.236 ? '#6baed6' :
+         d > 1952.638 ? '#bdd7e7' :
+         d > 1792.199 ? '#eff3ff' :
+         d > 1660.116 ? '#fee0d2' :
+         d > 1536.735 ? '#fc9272' :
+         d > 1407.501 ? '#de2d26' :
                     '#a50f15';
 }
+
 
 // Load data
 function loadLayer(year, layerType) {
