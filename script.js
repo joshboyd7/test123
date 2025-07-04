@@ -10,7 +10,7 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
 
 // Color scale
 function getColor(d) {
-  if (d === null || d === undefined || isNaN(d)) return '#cccccc'; // gray for NA
+  if (d === null || d === undefined || d === 0 || isNaN(d)) return '#cccccc'; // gray for NA
 
   return d > 9411.148 ? '#08306b' :
          d > 2511.106 ? '#2171b5' :
