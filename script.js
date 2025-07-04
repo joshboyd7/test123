@@ -1,6 +1,6 @@
 let map = L.map("map").setView([37.8, -96], 4);
 let geoLayer;
-let currentYear = "2023";
+let currentYear = "2024";
 let currentLayer = "county";
 
 // Basemap
