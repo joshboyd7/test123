@@ -76,9 +76,11 @@ function loadLayer(year, layerType) {
         .map(color => `<div class="stop" style="background:${color}; flex:1;"></div>`)
         .join("");
 
-      document.getElementById("legend-labels").innerHTML = fullBreaks
-        .map(b => `<span>${formatter.format(b)}</span>`)
-        .join("");
+document.getElementById("legend-labels").innerHTML = fullBreaks
+  .slice(0, -1) // exclude the last breakpoint (right edge)
+  .map(b => `<span>${formatter.format(b)}</span>`)
+  .join("");
+
 
       // Add GeoJSON layer with color scale
       geoLayer = L.geoJSON(data, {
