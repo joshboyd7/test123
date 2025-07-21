@@ -94,7 +94,7 @@ html, body {
 }
 
 .legend {
-  width: 360px; /* ⬅️ Adjust this as needed (e.g. 400px or more) */
+  width: 400px; /* ⬅️ Adjust this as needed (e.g. 400px or more) */
   padding: 12px 16px;
   font-size: 13px;
   border-radius: 8px;
