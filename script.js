@@ -39,23 +39,25 @@ function loadLayer(year, layerType) {
     .then(data => {
       if (geoLayer) map.removeLayer(geoLayer);
 
-      // Extract data values
-      const allValues = data.features.map(f => f.properties.value)
-        .filter(v => v != null && !isNaN(v))
+      // Extract and filter valid numeric values
+      const allValues = data.features
+        .map(f => f.properties.value)
+        .filter(v => typeof v === "number" && !isNaN(v))
         .sort((a, b) => a - b);
 
       if (allValues.length === 0) {
-        console.warn("No valid data values found.");
+        console.warn("No valid data to visualize.");
         return;
       }
 
-      // Compute quantile breaks
-      const breaks = computeQuantiles(allValues, [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8]);
+      // Compute quantile breaks (8 cuts = 9 bins)
+      const breaks = computeQuantiles(allValues, [0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 0.95]);
+
       const fullBreaks = [allValues[0], ...breaks, allValues[allValues.length - 1]];
       const colorStops = ['#08306b', '#2171b5', '#6baed6', '#bdd7e7', '#eff3ff', '#fee0d2', '#fc9272', '#de2d26', '#a50f15'];
       const formatter = new Intl.NumberFormat("en-US", { maximumFractionDigits: 0 });
 
-      // Define color scale based on computed quantiles
+      // Dynamic color scale
       const getColor = d => {
         if (d == null || isNaN(d)) return '#cccccc';
         return d > breaks[7] ? '#a50f15' :
@@ -69,17 +71,16 @@ function loadLayer(year, layerType) {
                                '#08306b';
       };
 
-      // Update legend colors
-      document.getElementById("legend-colors").innerHTML = colorStops.map(color =>
-        `<div class="stop" style="background:${color}; flex:1;"></div>`
-      ).join("");
+      // Update legend
+      document.getElementById("legend-colors").innerHTML = colorStops
+        .map(color => `<div class="stop" style="background:${color}; flex:1;"></div>`)
+        .join("");
 
-      // Update legend labels
-      document.getElementById("legend-labels").innerHTML = fullBreaks.map(b =>
-        `<span>${formatter.format(b)}</span>`
-      ).join("");
+      document.getElementById("legend-labels").innerHTML = fullBreaks
+        .map(b => `<span>${formatter.format(b)}</span>`)
+        .join("");
 
-      // Add GeoJSON layer
+      // Add GeoJSON layer with color scale
       geoLayer = L.geoJSON(data, {
         style: feature => ({
           fillColor: getColor(feature.properties.value),
@@ -91,18 +92,19 @@ function loadLayer(year, layerType) {
         }),
         onEachFeature: (feature, layer) => {
           const name = feature.properties.NAME || feature.properties.name || "";
-          const val = feature.properties.value != null ? feature.properties.value.toLocaleString() : "N/A";
-          layer.bindPopup(`${name}: $${val}`);
+          const val = feature.properties.value != null ? `$${feature.properties.value.toLocaleString()}` : "N/A";
+          layer.bindPopup(`${name}: ${val}`);
         }
       }).addTo(map);
 
-      // Keep view centered on mainland US
+      // Fixed view on mainland US
       map.setView([37.8, -96], 5.3);
     })
     .catch(err => {
       console.error("Error loading data:", err);
     });
 }
+
 
 // Initial load
 loadLayer(currentYear, currentLayer);
