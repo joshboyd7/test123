@@ -1,4 +1,14 @@
-let map = L.map("map").setView([37.8, -96], 4);
+
+// create map *without* its default zoom buttons
+let map = L.map("map", {
+  center: [37.8, -96],
+  zoom:   4,
+  zoomControl: false        // turn off default (topleft) control
+});
+
+// add the zoom buttons back on the right
+L.control.zoom({ position: "topright" }).addTo(map);
+
 let geoLayer;
 let currentYear = "2024";
 let currentLayer = "county";
@@ -51,7 +61,7 @@ function loadLayer(year, layerType) {
         }
       }).addTo(map);
 
-      map.fitBounds(geoLayer.getBounds());
+      map.setView([37.8, -96], 5.3);
     })
     .catch(err => {
       console.error("Error loading data:", err);
