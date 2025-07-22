@@ -134,4 +134,12 @@ document.getElementById("download").addEventListener("click", () => {
   a.click();
 });
 
+// Download All CSV for current layer (county/state)
+document.getElementById("download-all").addEventListener("click", () => {
+  const url = `data/All-${currentLayer}.csv`;
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `All-${currentLayer}.csv`;
+  a.click();
+});
 
