@@ -125,12 +125,13 @@ document.querySelectorAll('input[name="layer"]').forEach(input => {
   });
 });
 
-// Download button
+// Download CSV instead of JSON
 document.getElementById("download").addEventListener("click", () => {
-  const url = `data/${currentYear}-${currentLayer}.json`;
+  const url = `data/${currentYear}-${currentLayer}.csv`;
   const a = document.createElement("a");
   a.href = url;
-  a.download = `${currentYear}-${currentLayer}.json`;
+  a.download = `${currentYear}-${currentLayer}.csv`;
   a.click();
 });
+
 
