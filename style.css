@@ -68,7 +68,9 @@ html, body {
   margin-right: 8px;
 }
 
-#download {
+/* Shared styling for both buttons */
+#download,
+#download-all {
   margin-top: 10px;
   padding: 10px;
   font-weight: bold;
@@ -77,11 +79,15 @@ html, body {
   border-radius: 6px;
   cursor: pointer;
   transition: background-color 0.3s;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-#download:hover {
+#download:hover,
+#download-all:hover {
   background-color: #eee;
 }
+
 
 .author-links {
   font-size: 0.95em;
@@ -130,18 +136,5 @@ html, body {
   font-size: 11px;
 }
 
-#download-all {
-  margin-top: 8px;
-  padding: 10px;
-  font-weight: bold;
-  background-color: white;
-  border: 2px solid #222;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
 
-#download-all:hover {
-  background-color: #eee;
-}
 
