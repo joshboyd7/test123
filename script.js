@@ -78,7 +78,7 @@ function loadLayer(year, layerType) {
 
 document.getElementById("legend-labels").innerHTML = fullBreaks
   .slice(0, -1) // exclude the last breakpoint (right edge)
-  .map(b => `<span>>$ ${formatter.format(b)}</span>`)
+  .map(b => `<span>> $${formatter.format(b)}</span>`)
   .join("");
 
 
