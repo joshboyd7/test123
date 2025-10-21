@@ -77,9 +77,13 @@ function loadLayer(year, layerType) {
         .join("");
 
 document.getElementById("legend-labels").innerHTML = fullBreaks
-  .slice(0, -1) // exclude the last breakpoint (right edge)
-  .map(b => `<span>> $${formatter.format(b)}</span>`)
+  .slice(0, -1)
+  .map((b, i) => {
+    const label = `> $${formatter.format(b)}`;
+    return i === 0 ? `<span>${label} (min)</span>` : `<span>${label}</span>`;
+  })
   .join("");
+
 
 
       // Add GeoJSON layer with color scale
