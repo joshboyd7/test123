@@ -48,8 +48,8 @@ html, body {
 */
 .subtitle a,
 .author-links a {
-  color: #06c;
-  text-decoration: underline;
+  color: #06c !important;
+  text-decoration: underline !important;
 }
 
 #sidebar {
