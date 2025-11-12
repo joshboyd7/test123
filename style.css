@@ -35,7 +35,7 @@ html, body {
   font-size: 1.2em;
   margin: 5px 0 0 0;
 }
-
+/*
 .subtitle a {
   color: inherit;
   text-decoration: none;
@@ -45,7 +45,7 @@ html, body {
 .author-links a:hover {
   text-decoration: underline;
 }
-
+*/
 #sidebar {
   position: absolute;
   top: 160px;
