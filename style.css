@@ -46,6 +46,12 @@ html, body {
   text-decoration: underline;
 }
 */
+.subtitle a,
+.author-links a {
+  color: #06c;
+  text-decoration: underline;
+}
+
 #sidebar {
   position: absolute;
   top: 160px;
