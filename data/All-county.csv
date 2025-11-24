@@ -1,4 +1,4 @@
-"year","county_str","mean_premium","n_obs"
+"year","county_FIPS","mean_premium","n_obs"
 2014,"10001",1409,5266
 2015,"10001",1341,5301
 2016,"10001",1399,6084

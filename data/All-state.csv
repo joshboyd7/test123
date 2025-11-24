@@ -1,4 +1,4 @@
-"year","state","mean_premium","n_obs","STATEFP"
+"year","state","mean_premium","n_obs","state_FIPS"
 2014,"AK",1587,21750,"02"
 2015,"AK",1645,21386,"02"
 2016,"AK",1654,23636,"02"
